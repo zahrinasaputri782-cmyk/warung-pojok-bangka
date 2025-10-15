@@ -40,21 +40,59 @@
       color: #f39c12;
     }
 
+    /* Garis tiga (selalu tampil di semua device) */
+    .menu-toggle {
+      display: block;
+      font-size: 28px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* Menu dropdown */
     .nav-links {
       list-style: none;
-      display: flex;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background: #fff;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      display: none;
+      transition: all 0.3s ease;
+      transform-origin: top;
     }
+
+    .nav-links.active {
+      display: flex;
+      animation: dropdown 0.3s ease forwards;
+    }
+
+    @keyframes dropdown {
+      0% { opacity: 0; transform: scaleY(0); }
+      100% { opacity: 1; transform: scaleY(1); }
+    }
+
     .nav-links li {
-      margin-left: 30px;
+      margin: 0;
     }
     .nav-links a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
+      padding: 10px 0;
+      display: block;
+      width: 100%;
+      text-align: center;
       transition: 0.3s;
+      border-radius: 5px;
     }
     .nav-links a:hover {
-      color: #f39c12;
+      background: #f39c12;
+      color: #fff;
     }
 
     /* Hero Section */
@@ -160,6 +198,7 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      flex-grow: 1;
     }
 
     .map-section h3 {
@@ -300,6 +339,7 @@
   <header>
     <nav class="navbar">
       <div class="logo">Warung <span>PojokBangka</span></div>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
       <ul class="nav-links">
         <li><a href="#home">Beranda</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
@@ -388,5 +428,15 @@
   <footer>
     <p>© 2025 Warung Pojok Bangka | Dibuat dengan ❤️ di Jember</p>
   </footer>
+
+  <!-- Script Toggle Menu -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
