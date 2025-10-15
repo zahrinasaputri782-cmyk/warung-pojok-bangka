@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warung Pojok Bangka</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .logo span {
+      color: #f39c12;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+    .nav-links li {
+      margin-left: 30px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-links a:hover {
+      color: #f39c12;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('warung.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: #f39c12;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #d68910;
+    }
+
+    /* Dashboard Section */
+    .dashboard {
+      padding: 100px 20px;
+      background: #fff;
+    }
+
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+      align-items: stretch;
+    }
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-box {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-box h2 {
+      color: #f39c12;
+      margin-bottom: 15px;
+    }
+
+    .about-box p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .contact-info {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+    }
+
+    .contact-info p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .contact-info a {
+      color: #f39c12;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Map Section */
+    .map-section {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-section h3 {
+      color: #f39c12;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .map-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 270px;
+      border: 0;
+    }
+
+    .map-link {
+      display: block;
+      text-align: center;
+      background: #f39c12;
+      color: #fff;
+      padding: 8px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .map-link:hover {
+      background: #d68910;
+    }
+
+    /* Produk Kami */
+    .product-box h2 {
+      color: #f39c12;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 80%;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .product-card h3 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .product-card p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Pesan Sekarang */
+    .contact {
+      background: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: #f39c12;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #f39c12;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #d68910;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+      }
+
+      iframe {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Warung <span>PojokBangka</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#contact">Pesan Sekarang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Kulineran Di Jember YUKKK!!!</h1>
+      <p>Kami menghadirkan hidangan khas tradisional dengan cita rasa otentik dari Jember.</p>
+      <a href="#dashboard" class="btn">Lihat Menu</a>
+    </div>
+  </section>
+
+  <section id="dashboard" class="dashboard">
+    <div class="dashboard-container">
+      <div class="left-column">
+        <div class="about-box">
+          <h2>Tentang Kami</h2>
+          <p><b>Warung Pojok Bangka</b> adalah UMKM kuliner lokal di Jember, Jawa Timur yang menyajikan makanan khas nusantara dengan cita rasa tradisional dan bahan pilihan.</p>
+          <p>Kami berkomitmen menjaga cita rasa khas kampung dan memberikan pengalaman kuliner terbaik bagi pelanggan.</p>
+          <p>Menu Kami:</p>
+          <ul>
+            <li>Nasi Jagung</li>
+            <li>Nasi Pecel</li>
+            <li>Nasi Urap</li>
+            <li>Lontong Sayur</li>
+            <li>Lontong Pecel</li>
+            <li>Lontong Kare</li>
+            <li>Ketan</li>
+            <li>Kopi</li>
+            <li>Teh</li>
+          </ul>
+
+          <div class="contact-info">
+            <p><strong>📍 Alamat:</strong> Bundaran Pojok Bangka, Jember, Jawa Timur, Indonesia</p>
+            <p><strong>📞 WhatsApp:</strong> <a href="https://wa.me/6285755838381" target="_blank">+62 857-5583-8381</a></p>
+          </div>
+        </div>
+        <br>
+        <div class="map-section">
+          <h3>📍 Lokasi Kami</h3>
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.220000580609!2d113.69094017499345!3d-8.159900782094128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6951b1b5b1d3d%3A0x3e9e37a3b4e7e2b7!2sBundaran%20Pojok%20Bangka%2C%20Jember%2C%20Jawa%20Timur%2C%20Indonesia!5e0!3m2!1sid!2sid!4v1739561234567!5m2!1sid!2sid" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <a href="https://maps.google.com/?q=Bundaran+Pojok+Bangka,+Jember,+Jawa+Timur" target="_blank" class="map-link">📍 Lihat di Google Maps</a>
+        </div>
+      </div>
+
+      <div class="product-box">
+        <h2>Menu Favorit</h2>
+        <div class="product-grid">
+          <div class="product-card">
+            <img src="nasi-jagung-3.jpg" alt="Nasi Jagung" />
+            <h3>Nasi Jagung Komplit</h3>
+            <p>Perpaduan nasi dan jagung dengan sayur, telur, dan kelapa parut berbumbu khas.</p>
+          </div>
+          <div class="product-card">
+            <img src="nasi pecel.jpg" alt="Nasi Pecel" />
+            <h3>Nasi Pecel Pojok</h3>
+            <p>Nasi dengan sayur rebus dan sambal kacang gurih, disajikan bersama rempeyek renyah.</p>
+          </div>
+          <div class="product-card">
+            <img src="nasi urap.jpg" alt="Nasi Urap" />
+            <h3>Nasi Urap Tradisional</h3>
+            <p>Nasi dengan sayuran segar dan kelapa parut berbumbu gurih pedas khas kampung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Pesan Sekarang</h2>
+    <p>Ingin pesan nasi jagung, pecel, atau urap? Hubungi kami lewat WhatsApp di bawah ini 👇</p><br>
+    <a href="https://wa.me/6285755838381" target="_blank" class="btn">💬 Chat via WhatsApp</a>
+  </section>
+
+  <footer>
+    <p>© 2025 Warung Pojok Bangka | Dibuat dengan ❤️ di Jember</p>
+  </footer>
+</body>
+</html>
